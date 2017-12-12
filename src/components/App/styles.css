@@ -1,0 +1,7 @@
+body {
+    background: rgba(128, 128, 128, 0.1);
+}
+
+.root-container {
+    background-size: cover;
+}

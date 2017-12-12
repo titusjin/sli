@@ -1,0 +1,54 @@
+.outer-wrapper {
+    font-size: 1.6rem;
+}
+
+.basicwrapper {
+    position: absolute;
+    width: 70rem;
+    top: 20%;
+    left: 50%;
+    transform: translate( -50% );
+}
+.banner-text {
+  position: absolute;
+  font-size: 3rem;
+  color: white;
+  top: 20%;
+  left: 50%;
+  transform: translate(-288%, -100%);
+}
+
+.formdisplay {
+    position: absolute;
+    width: 74rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 2rem;
+    background-color: #FFF;
+}
+
+.final{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.logoLink {
+    color: #78CCD3;
+}
+
+.endPageText {
+    line-height: 1em;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.contentText {
+    line-height: 1.5em;
+    font-size: 0.7em;
+    border: solid 0.3rem #78CCD3;
+    text-align: left;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+}

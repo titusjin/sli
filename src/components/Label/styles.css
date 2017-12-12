@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    width: 100%;
+    margin-bottom: 10px;
+    flex-flow: column;
+    height: 100%;
+}
+
+.rowCotainer{
+    margin-top: 10px;
+    font-family: 'Avenir-Light';
+    color: #999999;
+    width: 100%;
+    display: inline-flex;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.title {
+    color: #999999;
+    flex-grow: 1;
+    text-align: left;
+    font-size: 15px;
+    text-align : left;
+    margin-left: 10px;
+}
+
+.data {
+    color: #292727;
+    flex-grow: 1;
+    font-size: 16px;
+    text-align: right;
+    margin-right: 10px;
+}

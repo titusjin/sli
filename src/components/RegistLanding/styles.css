@@ -1,0 +1,53 @@
+.container {
+    font-size: 1.6rem;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #1F3248;
+    background-size: cover;
+}
+
+/**
+ * [ inner element setting ]
+ */
+.title {
+    margin-top : 3rem;
+    margin-left : 4rem;
+    margin-bottom: 5rem;
+}
+.logo {
+    width: 16rem;
+    height: 3.3rem;
+}
+
+.content {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-gap: 15px;
+}
+
+.item {
+    position: relative;
+    min-width: 40rem;
+    min-height: 50rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background size set to : contain --> very important for this display */
+    background-size: contain;
+}
+
+.linkStyle {
+    font-size: 2rem;
+    color: #FFF;
+    opacity: 1;
+    position: absolute;
+    top: 80%;
+    left : 50%;
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+}
+
+.basic-imgStyle {
+    background-repeat: no-repeat;
+    background-size: contain;
+}

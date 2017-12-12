@@ -1,0 +1,13 @@
+# Logs
+npm-debug.log
+
+# Dependency directories
+node_modules
+
+# Build folder
+build
+
+#mac finder related files
+.DS_Store
+
+.happypack/*

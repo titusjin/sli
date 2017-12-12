@@ -1,0 +1,11 @@
+/* reset css settin in *(bad performace) and html body */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: inherit;
+}
+html body {
+    font-size: 10px;
+    font-weight: 400;
+    box-sizing: border-box;
+}

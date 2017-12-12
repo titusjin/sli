@@ -1,0 +1,14 @@
+.banner {
+  height: 35vh;
+  background-size:cover;
+  background-position: top;
+  z-index: -1;
+}
+
+/* Stil can't find a way to loading by css-loader with relative path */
+/*.banner .business-banner-img {
+    background-image: url(images/registform/business.jpg);
+}
+.banner .diver-banner-img {
+    background-image: url(images/registform/diver.jpg);
+}*/
