@@ -8,9 +8,6 @@
     positoin: relative;
 }
 
-/**
- * [ inner element setting ]
- */
 .title {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -37,30 +34,9 @@
 }
 .content-item {
   display: block;
+  margin-left: 10rem;
+  margin-bottom: 2rem;
 }
-
-.item {
-    position: relative;
-    min-width: 40rem;
-    min-height: 50rem;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* background size set to : contain --> very important for this display */
-    background-size: contain;
-}
-
-.linkStyle {
-    font-size: 2rem;
-    color: #FFF;
-    opacity: 1;
-    position: absolute;
-    top: 80%;
-    left : 50%;
-    -webkit-transform: translate(-50%, 0);
-            transform: translate(-50%, 0);
-}
-
-.basic-imgStyle {
-    background-repeat: no-repeat;
-    background-size: contain;
+.content-item > label {
+  padding-left: 2rem;
 }
