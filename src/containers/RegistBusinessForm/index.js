@@ -5,8 +5,6 @@
  *  @author titus
  */
 
-'use strict'
-
 import React from 'react'
 import * as actions from './actions'
 import { connect } from 'react-redux'

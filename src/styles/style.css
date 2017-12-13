@@ -9,3 +9,7 @@ html body {
     font-weight: 400;
     box-sizing: border-box;
 }
+
+button:focus {
+  outline:0;
+}

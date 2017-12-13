@@ -14,6 +14,9 @@ import styles from './styles.css'
 import classNames from 'classnames/bind'
 let cx = classNames.bind(styles)
 
+import AdminContainer from '~/src/containers/Admin'
+import EventContainer from '~/src/containers/Event'
+
 const contextTypes = {
   router: React.PropTypes.object.isRequired
 }
@@ -23,43 +26,51 @@ class Landing extends React.Component {
     super(props)
 
     this.state = {
-      checkedOption = ''
+      loginRole: ""
     }
 
-    this.handleUserLanding = this.handleUserLanding.bind( this )
+    this.handleLandingOptions = this.handleLandingOptions.bind(this)
+    this.handleUserRole = this.handleUserRole.bind(this)
+    this.handleVEentCode = this.handleVEentCode.bind(this)
   }
 
-  handleUserLanding (e) {
-    console.log( e.target.value )
-    if( e.target.checked ){
-      console.log('hello')
-      !e.target.checked
-    }else{
-      e.targe.checked = true;
+  handleLandingOptions () {
+    console.log('hrere the stat like : ', this.state);
+
+
+    if (this.state.loginRole === 'admin') {
+      return (
+        <AdminContainer />
+      )
+    } else {
+      console.log('ready to show EventContainer++++')
+
+      return (
+        <EventContainer setLoginRole={this.handleUserRole} />
+      )
     }
+  }
+
+  handleUserRole (role) {
+    console.log('hello world', role)
+    this.setState({
+      loginRole: role
+    })
+  }
+
+  handleVEentCode (e) {
+    console.log(e.target.value)
   }
 
   render () {
+    console.log('enter render ')
+
     return (
       <div className={cx('container')}>
         <div className={cx('title')}>
           <img src={logo} className={cx('logo')} />
         </div>
-        <div className={cx('content')}>
-          <div className={cx('content-title')}>
-            <span>Please Select "Top u interested" or Login as Admin</span>
-          </div>
-          <div className={cx('content-input')}>
-            <div className={cx('content-item')}>
-              <input type="radio" name="land-choose" value="aud" checked={true} onChange={ this.handleUserLanding }/>
-              <label>Choose One Event</label>
-            </div>
-            <div className={cx('content-item')}>
-              <input type="radio" name="land-choose" value="admin" onChange={ this.handleUserLanding }/>
-              <label>Login As Admin</label>
-            </div>
-          </div>
-        </div>
+        { this.handleLandingOptions() }
       </div>
     )
   }
