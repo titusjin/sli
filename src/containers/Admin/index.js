@@ -30,11 +30,14 @@ class AdminContainer extends React.Component {
         </div>
         <div className={cx('content-input')}>
           <div className={cx('content-item')}>
-            <input className={cx('input-item')} type="text" name="eventCode" placeholder="Input evnet Code" onChange={ this.handleVEentCode }/>
+            <input className={cx('input-item')} type="text" name="account" placeholder="email" onChange={ this.handleEmail }/>
+            <input className={cx('input-item')} type="password" name="password" placeholder="password" onChange={ this.handlePasword }/>
           </div>
+          <div className={cx('input-gap-text')}> or </div>
           <div className={cx('content-item')}>
-            <input type="radio" name="land-choose" value="admin" checked={ this.state.checkedOption === 'admin' } onChange={ this.handleUserLanding }/>
-            <label>Login As Admin</label>
+            <label onClick={ this.setLoginRole }>
+              <a href="#">Join Event as Audience</a>
+            </label>
           </div>
         </div>
       </div>

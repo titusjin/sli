@@ -24,8 +24,8 @@ class EventContainer extends React.Component {
     this.setLoginRole = this.setLoginRole.bind(this)
   }
 
-  setLoginRole (e) {
-    this.props.setLoginRole(e.target.value)
+  setLoginRole () {
+    this.props.setLoginRole('admin')
   }
 
   render () {
@@ -41,12 +41,12 @@ class EventContainer extends React.Component {
               Enter
             </button>
           </div>
-            <div className={cx('input-gap-text')}> or </div>
-            <div className={cx('content-item')}>
-              <label onClick={ this.setLoginRole }>
-                <a href="#">Login As Admin</a>
-              </label>
-            </div>
+          <div className={cx('input-gap-text')}> or </div>
+          <div className={cx('content-item')}>
+            <label onClick={ this.setLoginRole }>
+              <a href="#">Login As Admin</a>
+            </label>
+          </div>
         </div>
       </div>
     )
