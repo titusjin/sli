@@ -6,8 +6,8 @@ import RegistBusinessFormReducer from 'Containers/RegistBusinessForm/reducer'
 import RegistBusinessFormReducerExt from 'Containers/RegistBusinessFormExt/reducer'
 
 // the really useful reducers in here
+import AdminContainerReducer from 'Containers/Admin/reducer'
 import EventContainerReducer from 'Containers/Event/reducer'
-
 
 
 const rootReducer = combineReducers({
@@ -15,7 +15,8 @@ const rootReducer = combineReducers({
   RegistDiverFormReducerExt,
   RegistBusinessFormReducer,
   RegistBusinessFormReducerExt,
-  EventContainerReducer
+  EventContainerReducer,
+  AdminContainerReducer
 })
 
 export default rootReducer

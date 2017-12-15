@@ -1,0 +1,3 @@
+export const LOGIN_SUCCESS = 'Admin/LOGIN_SUCCESS'
+export const LOGIN_FAIL = 'Admin/LOGIN_FAIL'
+export const LOGIN_INPUT_NOT_COMPLETE = 'Admin/LOGIN_INPUT_NOT_COMPLETE'

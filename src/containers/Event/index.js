@@ -29,6 +29,8 @@ class EventContainer extends React.Component {
   }
 
   render () {
+    console.log('in event container render ...');
+
     return (
       <div className={cx('content')}>
         <div className={cx('content-title')}>

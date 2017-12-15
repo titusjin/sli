@@ -8,16 +8,14 @@ module.exports = [
             .then(loadRoute(cb)).catch(errorLoading)
     }
   },
-  // {
-  //   path: '/form/businessRegist',
-  //   getComponent (location, cb) {
-  //     System.import(
-  //               'Containers/RegistBusinessForm'
-  //           )
-  //               .then(loadRoute(cb))
-  //               .catch(errorLoading)
-  //   }
-  // },
+  {
+    path: '/amdin/manage',
+    getComponent (location, cb) {
+      System.import('Containers/AdminManage')
+                .then(loadRoute(cb))
+                .catch(errorLoading)
+    }
+  },
   // {
   //   path: '/form/diverRegist',
   //   getComponent (location, cb) {

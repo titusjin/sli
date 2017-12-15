@@ -7,19 +7,12 @@
 import React from 'react'
 import logo from '~/src/images/logo.png'
 
-import { Link } from 'react-router'
-import { connect } from 'react-redux'
-
 import styles from './styles.css'
 import classNames from 'classnames/bind'
 let cx = classNames.bind(styles)
 
 import AdminContainer from '~/src/containers/Admin'
 import EventContainer from '~/src/containers/Event'
-
-const contextTypes = {
-  router: React.PropTypes.object.isRequired
-}
 
 class Landing extends React.Component {
   constructor (props) {
@@ -31,24 +24,6 @@ class Landing extends React.Component {
 
     this.handleLandingOptions = this.handleLandingOptions.bind(this)
     this.handleUserRole = this.handleUserRole.bind(this)
-    this.handleVEentCode = this.handleVEentCode.bind(this)
-  }
-
-  handleLandingOptions () {
-    console.log('hrere the stat like : ', this.state);
-
-
-    if (this.state.loginRole === 'admin') {
-      return (
-        <AdminContainer />
-      )
-    } else {
-      console.log('ready to show EventContainer++++')
-
-      return (
-        <EventContainer setLoginRole={this.handleUserRole} />
-      )
-    }
   }
 
   handleUserRole (role) {
@@ -57,14 +32,20 @@ class Landing extends React.Component {
       loginRole: role
     })
   }
-
-  handleVEentCode (e) {
-    console.log(e.target.value)
+  handleLandingOptions () {
+    if (this.state.loginRole === 'admin') {
+      return (
+        <AdminContainer setLoginRole={this.handleUserRole}/>
+      )
+    } else {
+      console.log('ready to render event-container')
+      return (
+        <EventContainer setLoginRole={this.handleUserRole} />
+      )
+    }
   }
-
   render () {
-    console.log('enter render ')
-
+    console.log('into landing component render ...')
     return (
       <div className={cx('container')}>
         <div className={cx('title')}>
@@ -76,5 +57,4 @@ class Landing extends React.Component {
   }
 }
 
-Landing.contextTypes = contextTypes
 export default Landing
