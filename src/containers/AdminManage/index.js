@@ -18,6 +18,8 @@ import styles from './styles.css'
 import classNames from 'classnames/bind'
 let cx = classNames.bind(styles)
 
+import AdminEditEventModal from '~/src/components/AdminEditEventModal'
+
 const contextTypes = {
   router: React.PropTypes.object.isRequired
 }
@@ -28,7 +30,7 @@ class AdminManage extends React.Component {
     this.state = {
       start: '',
       end: '',
-      eventCode:''
+      eventCode: ''
     }
 
     this.handleStartDatetime = this.handleStartDatetime.bind(this)
@@ -36,41 +38,58 @@ class AdminManage extends React.Component {
     this.handleTextInput = this.handleTextInput.bind(this)
     this.addEvent = this.addEvent.bind(this)
     this.backLogin = this.backLogin.bind(this)
+    this.modifyEvent = this.modifyEvent.bind(this)
+    this.showEditEventModal = this.showEditEventModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
-  componentWillMount(){
-    this.props.actions.fetchEvents();
+  componentWillMount () {
+    this.props.actions.fetchEvents()
   }
 
-  handleTextInput(e){
+  closeModal(){
+      this.props.actions.closeEditModal()
+  }
+  modifyEvent(e){
+    let eventName = e.target.getAttribute('name')
+    this.props.actions.editEvent(eventId)
+  }
+
+  showEditEventModal(){
+      return(
+        <AdminEditEventModal data={this.props.manageReducer.questions} show={this.props.manageReducer.showEditModal} closeModal = { this.closeModal }/>
+      )
+  }
+
+
+  handleTextInput (e) {
     let ob = {}
     ob[e.target.name] = e.target.value
     this.setState(ob)
   }
-  handleStartDatetime(momdate){
+  handleStartDatetime (momdate) {
+    console.log(momdate.valueOf());
+
     this.setState({
       start: momdate.valueOf()
-    });
+    })
   }
-  handleEndDatetime(momdate){
+  handleEndDatetime (momdate) {
     this.setState({
       start: momdate.valueOf()
-    });
+    })
   }
 
-  addEvent(){
-    console.log('trigger add-event action');
+  addEvent () {
+    console.log('trigger add-event action')
   }
 
-  backLogin(){
+  backLogin () {
     this.context.router.push('/landing')
   }
 
-  render(){
-    console.log(this.props.containerReducer);
-
-
-    if(this.props.containerReducer.login){
+  render () {
+    if (this.props.containerReducer.login) {
       return (
         <div className={cx('container')}>
           <div className={cx('content')}>
@@ -82,26 +101,48 @@ class AdminManage extends React.Component {
                 <input className={cx('input-item')} type='text' name='eventName' placeholder='input evnet name' onChange={this.handleTextInput} />
                 <input className={cx('input-item')} type='text' name='eventCode' placeholder='input evnet code' onChange={this.handleTextInput} />
 
-                <DateTime className={cx('dateTime-input')} inputProps={{ placeholder: 'Start datetime'}} onChange={this.handleStartDatetime}/>
-                <DateTime inputProps={{ placeholder: 'End datetime', name: 'endDatetime'}} onChange={this.handleEndDatetime}/>
+                <DateTime className={cx('dateTime-input')} inputProps={{ placeholder: 'Start datetime'}} onChange={this.handleStartDatetime} />
+                <DateTime inputProps={{ placeholder: 'End datetime', name: 'endDatetime'}} onChange={this.handleEndDatetime} />
 
-                <button className={cx('input-btn')} type="submit" onClick={this.addEvent}>
+                <button className={cx('input-btn')} type='submit' onClick={this.addEvent}>
                   Add
                 </button>
               </div>
             </div>
           </div>
           <div className={cx('content')}>
-            <div>
-              <div className={cx('content-title')}>
-                <span>Mange Events</span>
-              </div>
+            <div className={cx('content-title')}>
+              <span>Mange Events</span>
             </div>
+            {
+              this.props.manageReducer.events.map( e => {
+                return (
+                  <div id={e.eventId} className={cx('content-input')}>
+                    <div className={cx('content-item')}>
+                      <div>
+                        <label className={cx('existing-event-title')}>
+                          Event Name :
+                        </label>
+                        <label className={cx('existing-event-mange')} onClick={this.modifyEvent} name={e.eventName}>
+                          {e.eventName}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+            }
           </div>
+          {this.showEditEventModal()}
         </div>
       )
-    }else{
-      { this.backLogin() }
+    } else {
+      return (
+        <div>
+          <span>processing...</span>
+          { this.backLogin() }
+        </div>
+      )
     }
   }
 }
@@ -117,9 +158,10 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-function mapStateToProps ({AdminContainerReducer}) {
+function mapStateToProps ({AdminContainerReducer,AdminMangeContainerReducer }) {
   return {
-    containerReducer: AdminContainerReducer
+    containerReducer: AdminContainerReducer,
+    manageReducer: AdminMangeContainerReducer
   }
 }
 

@@ -13,3 +13,14 @@
 .input-btn {
   margin-bottom: 3rem;
 }
+
+.existing-event-title {
+  display: inline;
+  cursor: pointer;
+  padding-right: 2rem;
+}
+.existing-event-mange {
+  display: inline;
+  cursor: pointer;
+  border-bottom: 2px black solid;
+}

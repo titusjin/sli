@@ -45,7 +45,6 @@ class Landing extends React.Component {
     }
   }
   render () {
-    console.log('into landing component render ...')
     return (
       <div className={cx('container')}>
         <div className={cx('title')}>
