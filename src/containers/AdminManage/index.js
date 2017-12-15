@@ -52,6 +52,7 @@ class AdminManage extends React.Component {
   }
   modifyEvent(e){
     let eventName = e.target.getAttribute('name')
+    let eventId = e.target.getAttribute('id')
     this.props.actions.editEvent(eventId)
   }
 
@@ -123,7 +124,7 @@ class AdminManage extends React.Component {
                         <label className={cx('existing-event-title')}>
                           Event Name :
                         </label>
-                        <label className={cx('existing-event-mange')} onClick={this.modifyEvent} name={e.eventName}>
+                        <label className={cx('existing-event-mange')} onClick={this.modifyEvent} name={e.eventName} id={e.eventId}>
                           {e.eventName}
                         </label>
                       </div>

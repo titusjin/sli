@@ -47,8 +47,11 @@ class AdminContainer extends React.Component {
   }
   checkLogin(){
     if(this.props.reducer.loginIncompolete){
+      const warningStyle = {
+        color: 'red'
+      }
       return(
-        <div>Something wrong with ur login infor, pls check</div>
+        <div style={warningStyle}>Something wrong with ur login infor, pls check</div>
       )
     }
   }

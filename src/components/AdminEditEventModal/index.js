@@ -25,7 +25,7 @@ class AdminEditEventModal extends React.Component {
         <Modal.Body>
           <div className={cx('headerText')}>Questions</div>
 
-          <Row style={rebuseRowContainerStyle}>
+          {/* <Row style={rebuseRowContainerStyle}>
             <div className={cx('ReviewHeaderText')}>Review Report</div>
             <Col md={6}>
               <Row className={cx('rowStyle')}>
@@ -57,12 +57,10 @@ class AdminEditEventModal extends React.Component {
                 </div>
               </Row>
             </Col>
-          </Row>
+          </Row> */}
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle='success' className='pull-left' onClick={this.passConfirm}>Pass</Button>
-          <Button bsStyle='' style={btn} bsClass='btn' className='pull-left' onClick={this.hideConfirm}>Hide</Button>
-          <Button bsStyle='danger' className='pull-left' onClick={this.blockConfirm}>Block</Button>
+          footer
         </Modal.Footer>
       </Modal>
     )

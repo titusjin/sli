@@ -25,7 +25,7 @@ export default function reducer (state = initialState, action) {
       return {
         ...state,
         selectedEvent: payload,
-        questions: questions,
+        questions: action.questions,
         showEditModal: true
       }
     case CLOSE_EDITMODAL:
