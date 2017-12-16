@@ -4,6 +4,8 @@ import {
   CLOSE_EDITMODAL
 } from './constants'
 
+import eventAPI from '~/src/utils/api-caller/event-api.js'
+
 const mockEvent = [
   {
     eventName: 'First',
@@ -38,19 +40,36 @@ const mockEventQuestions = [
   }
 ]
 
-export function createEvent () {
+export function createEvent (queryObj) {
   return (dispatch, actions) => {
-    
+    eventAPI.createEvent(queryObj)
+      .then(res => {
+        if(res.data.statusCode == 200){
+          fetchEvents();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 }
 
 export function fetchEvents () {
   return (dispatch, actions) => {
     // TODO change to call API
-    dispatch({
-      type: FETCH_SUCCESS,
-      payload: mockEvent
-    })
+    eventAPI.fetchEvents()
+      .then(res => {
+        dispatch({
+          type: FETCH_SUCCESS,
+          payload: res.data.result
+        })
+      })
+
+
+    // dispatch({
+    //   type: FETCH_SUCCESS,
+    //   payload: mockEvent
+    // })
   }
 }
 

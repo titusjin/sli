@@ -30,7 +30,8 @@ class AdminManage extends React.Component {
     this.state = {
       start: '',
       end: '',
-      eventCode: ''
+      eventCode: '',
+      eventName: ''
     }
 
     this.handleStartDatetime = this.handleStartDatetime.bind(this)
@@ -80,12 +81,20 @@ class AdminManage extends React.Component {
   }
   handleEndDatetime (momdate) {
     this.setState({
-      start: momdate.valueOf()
+      end: momdate.valueOf()
     })
   }
 
   addEvent () {
     console.log('trigger add-event action')
+
+    let queryObj = {
+      startDate : this.state.start,
+      endDate: this.state.end,
+      eventName: this.state.eventName,
+      eventCode: this.state.eventCode
+    }
+    this.props.actions.createEvent(queryObj)
   }
 
   backLogin () {

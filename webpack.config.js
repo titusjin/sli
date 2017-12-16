@@ -19,8 +19,8 @@ const HappyPack = require('happypack')
  * Different env variables
  */
 const DEV_URLS = require('./config/dev.config.urls')
-const TEST_URLS = require('./config/test.config.urls')
-const PROD_URLS = require('./config/prod.config.urls')
+// const TEST_URLS = require('./config/test.config.urls')
+// const PROD_URLS = require('./config/prod.config.urls')
 
 /**
  * hash for version number : fetch from package.json version number as input
@@ -85,13 +85,13 @@ module.exports = env => {
     plugins: removeEmpty([
       new ProgressBarPlugin(),
       ifDev(new webpack.DefinePlugin(DEV_URLS)),
-      ifTest(new webpack.DefinePlugin(TEST_URLS)),
-      ifProd(new webpack.DefinePlugin(PROD_URLS)),
-      ifProd(new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks: Infinity,
-        filename: '[name].[hash].js'
-      })),
+      // ifTest(new webpack.DefinePlugin(TEST_URLS)),
+      // ifProd(new webpack.DefinePlugin(PROD_URLS)),
+      // ifProd(new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'vendor',
+      //   minChunks: Infinity,
+      //   filename: '[name].[hash].js'
+      // })),
       new HtmlWebpackPlugin({
         template: resolve('src', 'index.html'),
         filename: './index.html',
