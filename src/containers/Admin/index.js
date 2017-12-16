@@ -51,7 +51,9 @@ class AdminContainer extends React.Component {
         color: 'red'
       }
       return(
-        <div style={warningStyle}>Something wrong with ur login infor, pls check</div>
+        <div style={warningStyle}>
+          Something wrong with ur login infor, pls check
+        </div>
       )
     }
   }

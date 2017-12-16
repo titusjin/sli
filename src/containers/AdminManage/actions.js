@@ -21,12 +21,16 @@ const mockEvent = [
 
 const mockEventQuestions = [
   {
+    eventId: '123',
+    questionId: '0000',
     content: 'how\'s the weather ?',
     username : 'shop',
     thumbUpCount: 1,
     timestamp: '1483330000000'
   },
   {
+    eventId: '123',
+    questionId: '1111',
     content: 'test ?',
     username : 'back',
     thumbUpCount: 0,

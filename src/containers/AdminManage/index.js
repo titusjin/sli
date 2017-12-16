@@ -41,6 +41,8 @@ class AdminManage extends React.Component {
     this.modifyEvent = this.modifyEvent.bind(this)
     this.showEditEventModal = this.showEditEventModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+
+    this.saveEditResult = this.saveEditResult.bind(this)
   }
 
   componentWillMount () {
@@ -58,8 +60,12 @@ class AdminManage extends React.Component {
 
   showEditEventModal(){
       return(
-        <AdminEditEventModal data={this.props.manageReducer.questions} show={this.props.manageReducer.showEditModal} closeModal = { this.closeModal }/>
+        <AdminEditEventModal data={this.props.manageReducer.questions} show={this.props.manageReducer.showEditModal} closeModal = { this.closeModal } saveEditResult={this.saveEditResult}/>
       )
+  }
+  saveEditResult(saveObj){
+    console.log('into adminMange-container saveEditResult method : ', saveObj.content + ',' + saveObj.eventId + ' , ' + saveObj.questionId);
+    //TODO save edited queston content to DB by API
   }
 
 

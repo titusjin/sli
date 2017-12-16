@@ -13,8 +13,9 @@ const initialState = {
 
 export default function reducer (state = initialState, action) {
   let payload = action.payload
+  let type = action.type
 
-  switch (action.type) {
+  switch (type) {
     case FETCH_SUCCESS:
       return {
         ...state,

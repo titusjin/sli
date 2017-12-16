@@ -13,54 +13,35 @@ import styles from './styles.css'
 import classNames from 'classnames/bind'
 let cx = classNames.bind(styles)
 
+import MangeQuestionWrapper from '~/src/components/MangeQuestionWrapper'
+
 class AdminEditEventModal extends React.Component {
-  constructor(props){
+  constructor (props) {
     super(props)
-    this.state={}
+    this.state = {}
   }
 
-  render(){
+  render () {
+    const footerStyle = {
+      color: '#FC5053'
+    }
+    const questions = this.props.data
     return (
       <Modal show={this.props.show} onHide={this.props.closeModal}>
         <Modal.Body>
           <div className={cx('headerText')}>Questions</div>
-
-          {/* <Row style={rebuseRowContainerStyle}>
-            <div className={cx('ReviewHeaderText')}>Review Report</div>
-            <Col md={6}>
-              <Row className={cx('rowStyle')}>
-                <div>Report Time</div>
-                <div>
-                  { moment(data.createTime).format('YYYY-MM-DD HH:mm') }
-                </div>
-              </Row>
-              <Row className={cx('rowStyle')}>
-                <div>Report type</div>
-                <div>
-                  {
-                    data.detail ? data.detail.abuseTypes.map((element, index) => (<div>{element}</div>)) : data.type
-                  }
-                </div>
-              </Row>
-            </Col>
-            <Col md={6}>
-              <Row className={cx('rowStyle')}>
-                <div>Review Status</div>
-                <div>
-                  {data.status}
-                </div>
-              </Row>
-              <Row className={cx('rowStyle')}>
-                <div>Report Comments</div>
-                <div className={cx('commentStyle')}>
-                  {data.comment}
-                </div>
-              </Row>
-            </Col>
-          </Row> */}
+            <div>
+              {
+                questions.map( q => {
+                  return (
+                    <MangeQuestionWrapper data={q} saveEditResult={this.props.saveEditResult}/>
+                  )
+                })
+              }
+            </div>
         </Modal.Body>
-        <Modal.Footer>
-          footer
+        <Modal.Footer style={footerStyle}>
+          &copy;Shopback
         </Modal.Footer>
       </Modal>
     )
