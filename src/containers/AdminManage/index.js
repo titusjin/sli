@@ -68,15 +68,12 @@ class AdminManage extends React.Component {
     //TODO save edited queston content to DB by API
   }
 
-
   handleTextInput (e) {
     let ob = {}
     ob[e.target.name] = e.target.value
     this.setState(ob)
   }
   handleStartDatetime (momdate) {
-    console.log(momdate.valueOf());
-
     this.setState({
       start: momdate.valueOf()
     })

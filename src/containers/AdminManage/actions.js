@@ -24,7 +24,7 @@ const mockEventQuestions = [
     eventId: '123',
     questionId: '0000',
     content: 'how\'s the weather ?',
-    username : 'shop',
+    username: 'shop',
     thumbUpCount: 1,
     timestamp: '1483330000000'
   },
@@ -32,12 +32,17 @@ const mockEventQuestions = [
     eventId: '123',
     questionId: '1111',
     content: 'test ?',
-    username : 'back',
+    username: 'back',
     thumbUpCount: 0,
     timestamp: '1522143999000'
   }
 ]
 
+export function createEvent () {
+  return (dispatch, actions) => {
+    
+  }
+}
 
 export function fetchEvents () {
   return (dispatch, actions) => {
@@ -51,10 +56,10 @@ export function fetchEvents () {
 
 export function editEvent (eventId) {
   return (dispatch, actions) => {
-    //TODO api search event with eventId
-    let selectedEvent = mockEvent.forEach( e => {
-      if(e.eventId == eventId){
-        return ;
+    // TODO api search event with eventId
+    let selectedEvent = mockEvent.forEach(e => {
+      if (e.eventId == eventId) {
+        return
       }
     })
 
@@ -66,7 +71,7 @@ export function editEvent (eventId) {
   }
 }
 
-export function closeEditModal(){
+export function closeEditModal () {
   return (dispatch, actions) => {
     dispatch({
       type: CLOSE_EDITMODAL,
