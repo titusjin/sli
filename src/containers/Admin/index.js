@@ -75,8 +75,6 @@ class AdminContainer extends React.Component {
       }
     })
 
-    console.log('in render we get token : ', token);
-
     if(this.props.reducer.login || token){
       return (
         <div>

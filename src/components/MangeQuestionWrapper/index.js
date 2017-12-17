@@ -27,6 +27,7 @@ class MangeQuestionWrapper extends React.Component {
     this.showEditArea = this.showEditArea.bind(this)
     this.saveEditResult = this.saveEditResult.bind(this)
     this.setEidtedContent = this.setEidtedContent.bind(this)
+    this.delete = this.delete.bind(this)
   }
 
   setEidtedContent(e){
@@ -41,12 +42,25 @@ class MangeQuestionWrapper extends React.Component {
     })
   }
   saveEditResult(){
+    let data = this.props.data
     let saveObj = {
       content: this.state.eidtedContent,
-      eventId: this.props.data.eventId,
-      questionId: this.props.data.questionId
+      _id: data._id,
+      eventId: data.eventId
     }
     this.props.saveEditResult(saveObj)
+    this.setState({
+      showEdit: false
+    })
+  }
+
+  delete(){
+    let data = this.props.data
+    let deleteObj = {
+      _id: data._id,
+      eventId: data.eventId
+    }
+    this.props.delete(deleteObj)
     this.setState({
       showEdit: false
     })
@@ -77,7 +91,7 @@ class MangeQuestionWrapper extends React.Component {
       <div id={q.eventId} className={cx('sigleMange-q')}>
         <div><span>{q.username}</span></div>
         <button className={cx('mange-btn')} onClick={this.edit}>Edit</button>
-        <button className={cx('mange-btn')}>Delete</button>
+        <button className={cx('mange-btn')} onClick={this.delete}>Delete</button>
         <div style={smallTitle}>
           <img src={thumbUpImage} className={cx('thumbupImage-mangeQ')}/>
           <span style={thubupNumManageQ}>{q.thumbUpCount}</span>

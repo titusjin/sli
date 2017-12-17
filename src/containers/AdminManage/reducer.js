@@ -1,7 +1,9 @@
 import {
   FETCH_SUCCESS,
   SELECTED_EVENT,
-  CLOSE_EDITMODAL
+  CLOSE_EDITMODAL,
+  SAVE_EDITED_QUESTION_SUCCESS,
+  SAVE_EDITED_QUESTION_FAIL
 } from './constants'
 
 const initialState = {
@@ -25,7 +27,6 @@ export default function reducer (state = initialState, action) {
     case SELECTED_EVENT:
       return {
         ...state,
-        selectedEvent: payload,
         questions: action.questions,
         showEditModal: true
       }
@@ -33,6 +34,12 @@ export default function reducer (state = initialState, action) {
       return {
         ...state,
         showEditModal: false
+      }
+    case SAVE_EDITED_QUESTION_SUCCESS:
+      return {}
+    case SAVE_EDITED_QUESTION_FAIL:
+      return {
+        ...state
       }
     default:
       return state

@@ -1,71 +1,35 @@
 import {
   FETCH_SUCCESS,
   SELECTED_EVENT,
-  CLOSE_EDITMODAL
+  CLOSE_EDITMODAL,
+  SAVE_EDITED_QUESTION_SUCCESS,
+  SAVE_EDITED_QUESTION_FAIL
 } from './constants'
 
 import eventAPI from '~/src/utils/api-caller/event-api.js'
+import questionAPI from '~/src/utils/api-caller/question-api.js'
 import swal from '~/src/utils/swalTrigger'
-
-const mockEvent = [
-  {
-    eventName: 'First',
-    eventId: '123',
-    startTime: '1483200000000', // 2017-01-01T00:00:00+0800
-    endTime: '1512143999000'    // 2017-12-01T23:59:59+0800
-  },
-  {
-    eventName: 'Second',
-    eventId: '456',
-    startTime: '1483200000000',
-    endTime: '1512143999000'
-  }
-]
-
-const mockEventQuestions = [
-  {
-    eventId: '123',
-    questionId: '0000',
-    content: 'how\'s the weather ?',
-    username: 'shop',
-    thumbUpCount: 1,
-    timestamp: '1483330000000'
-  },
-  {
-    eventId: '123',
-    questionId: '1111',
-    content: 'test ?',
-    username: 'back',
-    thumbUpCount: 0,
-    timestamp: '1522143999000'
-  }
-]
 
 export function createEvent (queryObj) {
   return (dispatch, actions) => {
     eventAPI.createEvent(queryObj)
       .then(res => {
         if (res.data.statusCode == 200) {
-          console.log('ready to call fetchEvents ....')
           dispatch(fetchEvents())
         } else {
           reject(new Error('CREATEEVENT_FAIL'))
         }
       })
       .catch(err => {
-        console.log(err)
         swal.triggerGeneralAlert('fail', 'create new event fail.')
       })
   }
 }
 
 export function fetchEvents () {
-  console.log('IN fetchEvents method...')
   return (dispatch, actions) => {
     eventAPI.fetchEvents()
       .then(res => {
-        console.log('get evnets like : ', res.data.result)
-
         dispatch({
           type: FETCH_SUCCESS,
           payload: res.data.result
@@ -74,20 +38,50 @@ export function fetchEvents () {
   }
 }
 
+export function saveEditResult (saveObj) {
+  return (dispatch, actions) => {
+    questionAPI.saveEditResult(saveObj)
+      .then(res => {
+        console.log(res)
+
+        dispatch(editEvent(saveObj.eventId))
+      })
+      .catch(err => {
+        swal.triggerGeneralAlert('fail', 'save edited content fail.')
+      })
+  }
+}
+
+export function deleteQestion(deleteObj){
+  return (dispatch, actions) => {
+    questionAPI.deleteQestion(deleteObj)
+      .then(res => {
+        console.log(res)
+
+        dispatch(editEvent(deleteObj.eventId))
+      })
+      .catch(err => {
+        swal.triggerGeneralAlert('fail', 'delete question fail.')
+      })
+  }
+}
+
 export function editEvent (eventId) {
   return (dispatch, actions) => {
-    // TODO api search event with eventId
-    let selectedEvent = mockEvent.forEach(e => {
-      if (e.eventId == eventId) {
-        return
-      }
-    })
+    questionAPI.fetchQ(eventId)
+      .then(res => {
+        console.log(res.data.result)
 
-    dispatch({
-      type: SELECTED_EVENT,
-      payload: selectedEvent,
-      questions: mockEventQuestions
-    })
+        if (res.data.statusCode == 200) {
+          dispatch({
+            type: SELECTED_EVENT,
+            questions: res.data.result
+          })
+        }
+      })
+      .catch(err => {
+        swal.triggerGeneralAlert('fail', 'fetch questions from that event fail.')
+      })
   }
 }
 

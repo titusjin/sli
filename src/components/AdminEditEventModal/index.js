@@ -34,7 +34,7 @@ class AdminEditEventModal extends React.Component {
               {
                 questions.map( q => {
                   return (
-                    <MangeQuestionWrapper data={q} saveEditResult={this.props.saveEditResult}/>
+                    <MangeQuestionWrapper data={q} saveEditResult={this.props.saveEditResult} delete={this.props.deleteQestion}/>
                   )
                 })
               }

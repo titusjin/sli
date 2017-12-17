@@ -44,6 +44,7 @@ class AdminManage extends React.Component {
     this.closeModal = this.closeModal.bind(this)
 
     this.saveEditResult = this.saveEditResult.bind(this)
+    this.deleteQestion = this.deleteQestion.bind(this)
   }
 
   componentWillMount () {
@@ -61,14 +62,20 @@ class AdminManage extends React.Component {
 
   showEditEventModal(){
       return(
-        <AdminEditEventModal data={this.props.manageReducer.questions} show={this.props.manageReducer.showEditModal} closeModal = { this.closeModal } saveEditResult={this.saveEditResult}/>
+        <AdminEditEventModal data={this.props.manageReducer.questions} show={this.props.manageReducer.showEditModal} closeModal = { this.closeModal } saveEditResult={this.saveEditResult} deleteQestion={this.deleteQestion}/>
       )
   }
   saveEditResult(saveObj){
-    console.log('into adminMange-container saveEditResult method : ', saveObj.content + ',' + saveObj.eventId + ' , ' + saveObj.questionId);
+    console.log('into adminMange-container saveEditResult method : ', saveObj.content + ',' + saveObj._id , + ', ' + saveObj.eventId);
 
     //TODO save edited queston content to DB by API
-    this.actions.saveEditResult(saveObj);
+    this.props.actions.saveEditResult(saveObj);
+  }
+  deleteQestion(deleteObj){
+    console.log('into adminMange-container delete method : ', deleteObj._id + ', ' + deleteObj.eventId);
+
+    //TODO save edited queston content to DB by API
+    this.props.actions.deleteQestion(deleteObj);
   }
 
   handleTextInput (e) {
@@ -104,7 +111,15 @@ class AdminManage extends React.Component {
   }
 
   render () {
-    if (this.props.containerReducer.login) {
+    let cookies = document.cookie.split(';')
+    let token = ''
+    cookies.forEach(c => {
+      if(c.indexOf('token') != -1){
+        token = c.split('=')[1]
+      }
+    })
+
+    if (this.props.containerReducer.login || token) {
       return (
         <div className={cx('container')}>
           <div className={cx('content')}>
@@ -132,13 +147,13 @@ class AdminManage extends React.Component {
             {
               this.props.manageReducer.events.map( e => {
                 return (
-                  <div id={e.eventId} className={cx('content-input')}>
+                  <div id={e._id} className={cx('content-input')}>
                     <div className={cx('content-item')}>
                       <div>
                         <label className={cx('existing-event-title')}>
                           Event Name :
                         </label>
-                        <label className={cx('existing-event-mange')} onClick={this.modifyEvent} name={e.eventName} id={e.eventId}>
+                        <label className={cx('existing-event-mange')} onClick={this.modifyEvent} name={e.eventName} id={e._id}>
                           {e.eventName}
                         </label>
                       </div>
