@@ -16,6 +16,18 @@ EventAPI.createEvent = (queryObj) => {
   })
 }
 
+EventAPI.fetchOneEvent = (eventObj) =>{
+  let url = `${local_API}/events/single`
+  return api.fire({
+    url: url,
+    method: 'GET',
+    params: {
+      eventCode: eventObj.eventCode,
+      eventName: eventObj.eventName
+    }
+  })
+}
+
 EventAPI.fetchEvents = () => {
   let url = `${local_API}/events`
   return api.fire({

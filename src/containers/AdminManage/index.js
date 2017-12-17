@@ -95,8 +95,6 @@ class AdminManage extends React.Component {
   }
 
   addEvent () {
-    console.log('trigger add-event action')
-
     let queryObj = {
       startDate : this.state.start,
       endDate: this.state.end,

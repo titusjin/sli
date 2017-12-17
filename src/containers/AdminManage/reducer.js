@@ -36,7 +36,9 @@ export default function reducer (state = initialState, action) {
         showEditModal: false
       }
     case SAVE_EDITED_QUESTION_SUCCESS:
-      return {}
+      return {
+        ...state
+      }
     case SAVE_EDITED_QUESTION_FAIL:
       return {
         ...state

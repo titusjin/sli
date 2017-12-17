@@ -16,6 +16,14 @@ module.exports = [
                 .catch(errorLoading)
     }
   },
+  {
+    path: '/event/questions',
+    getComponent (location, cb) {
+      System.import('Containers/Questions')
+                .then(loadRoute(cb))
+                .catch(errorLoading)
+    }
+  }
   // {
   //   path: '/form/diverRegist',
   //   getComponent (location, cb) {

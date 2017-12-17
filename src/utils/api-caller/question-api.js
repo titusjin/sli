@@ -33,4 +33,13 @@ QuestionAPI.fetchQ = (eventId) => {
   })
 }
 
+QuestionAPI.saveQ = (saveObj) => {
+  let url = `${local_API}/questions`
+  return api.fire({
+    url: url,
+    method: 'POST',
+    data: saveObj
+  })
+}
+
 module.exports = QuestionAPI
