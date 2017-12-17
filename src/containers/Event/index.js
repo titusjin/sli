@@ -19,18 +19,24 @@ class EventContainer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      
     }
 
     this.setLoginRole = this.setLoginRole.bind(this)
+    this.handleInput = this.handleInput.bind(this)
   }
 
   setLoginRole () {
     this.props.setLoginRole('admin')
   }
 
-  render () {
-    console.log('in event container render ...');
+  handleInput(e){
+    let ob = {}
+    ob[e.target.name] = e.target.value;
+    this.setState(ob);
+  }
 
+  render () {
     return (
       <div className={cx('content')}>
         <div className={cx('content-title')}>
@@ -38,7 +44,8 @@ class EventContainer extends React.Component {
         </div>
         <div className={cx('content-input')}>
           <div className={cx('content-item')}>
-            <input className={cx('input-item')} type='text' name='eventCode' placeholder='Input evnet Code' onChange={this.handleVEentCode} />
+            <input className={cx('input-item')} type='text' name='eventName' placeholder='Input evnet name' onChange={this.handleInput} />
+            <input className={cx('input-item')} type='text' name='eventCode' placeholder='Input evnet Code' onChange={this.handleInput} />
             <button className={cx('input-btn')} type="submit">
               Enter
             </button>

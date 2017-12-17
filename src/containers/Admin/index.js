@@ -67,7 +67,17 @@ class AdminContainer extends React.Component {
   }
 
   render () {
-    if(this.props.reducer.login){
+    let cookies = document.cookie.split(';')
+    let token = ''
+    cookies.forEach(c => {
+      if(c.indexOf('token') != -1){
+        token = c.split('=')[1]
+      }
+    })
+
+    console.log('in render we get token : ', token);
+
+    if(this.props.reducer.login || token){
       return (
         <div>
           <span>processing...</span>

@@ -27,7 +27,6 @@ class Landing extends React.Component {
   }
 
   handleUserRole (role) {
-    console.log('hello world', role)
     this.setState({
       loginRole: role
     })
@@ -38,7 +37,6 @@ class Landing extends React.Component {
         <AdminContainer setLoginRole={this.handleUserRole}/>
       )
     } else {
-      console.log('ready to render event-container')
       return (
         <EventContainer setLoginRole={this.handleUserRole} />
       )

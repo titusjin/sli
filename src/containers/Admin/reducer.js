@@ -7,7 +7,8 @@ import {
 const initialState = {
   login: false,
   loginIncompolete: false,
-  userData: {}
+  userData: {},
+  token: ''
 }
 
 export default function reducer (state = initialState, action) {
@@ -18,10 +19,7 @@ export default function reducer (state = initialState, action) {
       return {
         ...state,
         login: true,
-        userData:{
-          // TODO replace to real data
-          email: 'titus@gmail.com'
-        }
+        token: payload
       }
       break
     case LOGIN_FAIL:

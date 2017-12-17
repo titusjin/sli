@@ -5,6 +5,7 @@ import {
 } from './constants'
 
 import eventAPI from '~/src/utils/api-caller/event-api.js'
+import swal from '~/src/utils/swalTrigger'
 
 const mockEvent = [
   {
@@ -44,32 +45,32 @@ export function createEvent (queryObj) {
   return (dispatch, actions) => {
     eventAPI.createEvent(queryObj)
       .then(res => {
-        if(res.data.statusCode == 200){
-          fetchEvents();
+        if (res.data.statusCode == 200) {
+          console.log('ready to call fetchEvents ....')
+          dispatch(fetchEvents())
+        } else {
+          reject(new Error('CREATEEVENT_FAIL'))
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
+        swal.triggerGeneralAlert('fail', 'create new event fail.')
       })
   }
 }
 
 export function fetchEvents () {
+  console.log('IN fetchEvents method...')
   return (dispatch, actions) => {
-    // TODO change to call API
     eventAPI.fetchEvents()
       .then(res => {
+        console.log('get evnets like : ', res.data.result)
+
         dispatch({
           type: FETCH_SUCCESS,
           payload: res.data.result
         })
       })
-
-
-    // dispatch({
-    //   type: FETCH_SUCCESS,
-    //   payload: mockEvent
-    // })
   }
 }
 

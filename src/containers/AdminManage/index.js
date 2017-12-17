@@ -66,7 +66,9 @@ class AdminManage extends React.Component {
   }
   saveEditResult(saveObj){
     console.log('into adminMange-container saveEditResult method : ', saveObj.content + ',' + saveObj.eventId + ' , ' + saveObj.questionId);
+
     //TODO save edited queston content to DB by API
+    this.actions.saveEditResult(saveObj);
   }
 
   handleTextInput (e) {
