@@ -10,11 +10,14 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import { Provider } from 'react-redux'
 
-import reducers from './reducers'
 import ReduxPromise from 'redux-promise'
 import ReduxThunk from 'redux-thunk'
 import createLogger from 'redux-logger'
-import Root from './root'
+
+import reducers from './reducers'
+import { AppContainer } from 'react-hot-loader'
+import Router from './Routes'
+// import Root from './root'
 
 import 'react-select/dist/react-select.css'
 import 'react-input-calendar/style/index.css'
@@ -25,6 +28,8 @@ import 'sweetalert/dist/sweetalert.css'
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css'
 import './styles/style.css'
 import './styles/desktop.css'
+
+
 
 function enhancer () {
   if (process.env.NODE_ENV === 'development') {
@@ -56,10 +61,16 @@ if (process.env.NODE_ENV === 'development' && module.hot) {
     )
 }
 
-
 ReactDOM.render(
-  <Root store={store} />,
+  <AppContainer>
+    <Provider store={store}>
+      { Router }
+    </Provider>
+  </AppContainer>,
   document.querySelector('.app')
 )
 
-// renderApp(Root)
+// ReactDOM.render(
+//   <Root store={store} />,
+//   document.querySelector('.app')
+// )
